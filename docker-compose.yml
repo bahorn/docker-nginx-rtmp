@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx-rtmp:
-    image: bahorn/nginx-rtmp
+    build: .
     ports:
       - 1935:1935
       - 8080:80
