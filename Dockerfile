@@ -123,7 +123,7 @@ RUN cd /tmp/ffmpeg-${FFMPEG_VERSION} && \
   --disable-doc \
   --disable-ffplay \
   --extra-libs="-lpthread -lm" && \
-  make && make install && make distclean
+  make -j`nproc` && make install && make distclean
 
 ##########################
 # Build the release image.
