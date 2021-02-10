@@ -9,6 +9,8 @@ services:
     environment:
       - HTTP_PORT=8080
       - RTMP_PORT=1935
+    volumes:
+      - ./.htpasswd:/opt/htpasswd:ro
   redis:
     image: redis
     ports:
