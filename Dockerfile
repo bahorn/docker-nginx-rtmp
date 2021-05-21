@@ -9,6 +9,7 @@ ARG FFMPEG_VERSION=4.3.1
 # Build the NGINX-build image.
 FROM alpine:3.13 as build-nginx
 ARG OPENRESTY_VERSION
+
 ARG NGINX_RTMP_VERSION
 ARG NGINX_REDIS_VERSION
 ARG NGINX_DEVEL_KIT_VERSION
@@ -60,6 +61,8 @@ RUN cd /tmp/openresty-${OPENRESTY_VERSION} && \
   --with-cc-opt="-Wimplicit-fallthrough=0" && \
   cd /tmp/openresty-${OPENRESTY_VERSION} && make -j `nproc` && make install
 
+###############################
+# Build the FFmpeg-build image.
 FROM alpine:3.13 as build-ffmpeg
 ARG FFMPEG_VERSION
 ARG PREFIX=/usr/local
