@@ -3,7 +3,7 @@ ARG NGINX_RTMP_VERSION=1.2.1
 ARG NGINX_REDIS_VERSION=0.3.9
 ARG NGINX_DEVEL_KIT_VERSION=0.3.1
 ARG NGINX_FORM_INPUT_VERSION=0.12
-ARG FFMPEG_VERSION=4.3.1
+ARG FFMPEG_VERSION=4.4
 
 ##############################
 # Build the NGINX-build image.
@@ -159,6 +159,7 @@ COPY --from=build-nginx /usr/local/nginx /usr/local/nginx
 COPY --from=build-nginx /etc/nginx /etc/nginx
 COPY --from=build-ffmpeg /usr/local /usr/local
 COPY --from=build-ffmpeg /usr/lib/libfdk-aac.so.2 /usr/lib/libfdk-aac.so.2
+COPY --from=build-ffmpeg /usr/lib/libx264.so.* /usr/lib/
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/nginx/sbin"
