@@ -31,7 +31,7 @@ if not res or res == ngx.null then
 end
 
 -- check if the stream shares the same key
-if not res == args["key"] then
+if not (res == args["key"]) then
     ngx.status = ngx.HTTP_FORBIDDEN
     ngx.say("app isn't authorized.")
     return ngx.exit(ngx.status)
