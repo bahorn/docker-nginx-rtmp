@@ -159,11 +159,12 @@ COPY --from=build-nginx /usr/local/nginx /usr/local/nginx
 COPY --from=build-nginx /etc/nginx /etc/nginx
 COPY --from=build-ffmpeg /usr/local /usr/local
 COPY --from=build-ffmpeg /usr/lib/libfdk-aac.so.2 /usr/lib/libfdk-aac.so.2
-COPY --from=build-ffmpeg /usr/lib/libx264.so.* /usr/lib/
+COPY --from=build-ffmpeg /usr/lib/libx264.* /usr/lib/
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/nginx/sbin"
 ADD nginx.conf /etc/nginx/nginx.conf.template
+ADD lua /usr/local/nginx/nginx/lua
 RUN mkdir -p /opt/data && mkdir /www
 ADD static /www/static
 
