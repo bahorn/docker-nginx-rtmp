@@ -6,11 +6,14 @@ services:
     ports:
       - 1935:1935
       - 8080:8080
+      - 8443:8443
     environment:
+      - HTTPS_PORT=8443
       - HTTP_PORT=8080
       - RTMP_PORT=1935
     volumes:
       - ./.htpasswd:/opt/htpasswd:ro
+      - ./.keys:/opt/keys:ro
   redis:
     image: redis
     ports:
